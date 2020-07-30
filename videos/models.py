@@ -20,6 +20,12 @@ class Project(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=False)
 
 class Testimonial(models.Model):
+	class Meta:
+        verbose_name = 'testimonial'
+        verbose_name_plural = 'testimonials'
     client_name = models.CharField(max_length=120)
     comment = models.TextField(blank=False)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=False)
+
+    def __str__(self):
+        return self.client_name
