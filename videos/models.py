@@ -9,6 +9,7 @@ class Category(models.Model):
     homepage_image = models.FileField(null=True, blank=True, upload_to="files")
     homepage_text = models.TextField(max_length=1000)
     category_page_text = models.TextField(max_length=1000)
+    slug = models.SlugField(default="fishing")
 
     def __str__(self):
         return self.name
