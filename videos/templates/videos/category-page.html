@@ -1,0 +1,17 @@
+<h1>{{ category.name }}</h1>
+<p>{{ category.category_page_text|linebreaks }}</p>
+
+
+<h2>Projects</h2>
+{% for p in category.get_projects_category_page %}
+<p>{{ p.name }}</p>
+<img style="width:200px;" src="media/{{ p.project_image }}">
+{% endfor %}
+
+
+<h2>Testimonials</h2>
+{% for t in category.testimonial_set.all %}
+<p>{{ t.client_name }}</p>
+<p>{{ t.comment }}</p>
+{% endfor %}
+
