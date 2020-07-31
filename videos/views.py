@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Category
+from .models import Category, Project
+from django.views import generic
 
 # Create your views here.
 def index(request):
@@ -12,3 +13,6 @@ class CategoryPage(generic.DetailView):
 
     def get_queryset(self):
         return Category.objects.all()
+        
+        
+
