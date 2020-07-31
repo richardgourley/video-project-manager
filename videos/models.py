@@ -6,6 +6,9 @@ class Category(models.Model):
         verbose_name = 'category'
         verbose_name_plural = 'categories'
     name = models.CharField(max_length=120)
+    homepage_image = models.FileField(null=True, blank=True, upload_to="files")
+    homepage_text = models.TextField(max_length=1000)
+    category_page_text = models.TextField(max_length=1000)
 
     def __str__(self):
         return self.name
