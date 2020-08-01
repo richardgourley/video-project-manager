@@ -1,0 +1,10 @@
+{% load static %}
+<h1>Project Detail</h1>
+<h2>{{ project.name }}</h2>
+<p>{{ project.placement }}</p>
+<p>{{ project.category }}</p>
+<p>{{ project.project_image }}</p>
+<p>{{ project.project_image.url }}</p>
+<img style="width:300px;" src=" {{ project.project_image.url }} ">
+
+
