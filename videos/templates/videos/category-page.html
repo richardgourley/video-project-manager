@@ -5,7 +5,7 @@
 <h2>Projects</h2>
 {% for p in category.get_projects_category_page %}
 <p>{{ p.name }}</p>
-<img style="width:200px;" src="media/{{ p.project_image }}">
+<a href="{% url 'videos:project_detail' p.id %}"><img style="width:200px;" src="media/{{ p.project_image }}"></a>
 {% endfor %}
 
 
