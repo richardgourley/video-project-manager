@@ -13,6 +13,13 @@ class CategoryPage(generic.DetailView):
 
     def get_queryset(self):
         return Category.objects.all()
+
+class ProjectDetail(generic.DetailView):
+	model = Project
+	template_name = 'videos/project-detail.html'
+
+	def get_queryset(self):
+		return Project.objects.all()
         
         
 
