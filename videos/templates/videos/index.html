@@ -3,11 +3,11 @@
 {% for c in categories %}
 <p>{{ c.name }}</p>
 <p>{{ c.homepage_text|linebreaks }}</p>
-<img src="media/{{ c.homepage_image }}">
+<img style="width:300px;" src="{{ c.homepage_image.url }}">
 
 <h2>Projects</h2>
 {% for p in c.get_projects_homepage %}
 <p>{{ p.name }}</p>
-<img src="media/{{ p.project_image }}">
+<a href="{% url 'videos:project_detail' p.id %}"><img src="{{ p.project_image.url }}"></a>
 {% endfor %}
 {% endfor %}
