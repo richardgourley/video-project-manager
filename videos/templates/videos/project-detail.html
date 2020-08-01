@@ -1,10 +1,28 @@
+{% extends 'videos/header.html' %}
 {% load static %}
-<h1>Project Detail</h1>
-<h2>{{ project.name }}</h2>
-<p>{{ project.placement }}</p>
-<p>{{ project.category }}</p>
-<p>{{ project.project_image }}</p>
-<p>{{ project.project_image.url }}</p>
-<img style="width:300px;" src=" {{ project.project_image.url }} ">
+
+
+{% block content %}
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h2>{{ project.name }}</h2>
+      <p>Category: {{ project.category }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <!-- Embed video code goes here -->
+      <!-- {{ project.video_code }}-->
+      <iframe src=""></iframe>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
 
 

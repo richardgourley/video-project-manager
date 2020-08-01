@@ -1,17 +1,53 @@
-<h1>{{ category.name }}</h1>
-<p>{{ category.category_page_text|linebreaks }}</p>
+{% extends 'videos/header.html' %}
+
+{% block content %}
+
+<!-- Category information-->
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12">
+      <h1>{{ category.name }}</h1>
+      <p>{{ category.category_page_text|linebreaks }}</p>
+    </div>
+  </div>
+</div>
+
+<!-- Projects display -->
+<div class="container my-5">
+  <div class="row">
+    <h2>Recent Projects</h2>
+  </div> 
+</div>
+
+<div class="container my-5">
+  <div class="row">
+    {% for p in category.get_projects_category_page %}
+      <div class="col-sm-6">
+        <a href="{% url 'videos:project_detail' p.id %}"><img class="img-fluid" src="media/{{ p.project_image }}"></a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
 
 
-<h2>Projects</h2>
-{% for p in category.get_projects_category_page %}
-<p>{{ p.name }}</p>
-<a href="{% url 'videos:project_detail' p.id %}"><img style="width:200px;" src="media/{{ p.project_image }}"></a>
-{% endfor %}
+<!-- Testimonials -->
+<div class="container my-5">
+  <div class="row">
+    <h2>Testimonials</h2>
+  </div> 
+</div>
+
+<div class="container my-5">
+  <div class="row">
+    {% for t in category.testimonial_set.all %}
+    <div class="col-sm-6 border border-light p-4">
+	  <p>{{ t.client_name }}</p>
+	  <p>{{ t.comment }}</p>
+    </div>
+	{% endfor %}
+  </div> 
+</div>
 
 
-<h2>Testimonials</h2>
-{% for t in category.testimonial_set.all %}
-<p>{{ t.client_name }}</p>
-<p>{{ t.comment }}</p>
-{% endfor %}
+{% endblock %}
 

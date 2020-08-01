@@ -1,13 +1,61 @@
-<h1>Index</h1>
+{% extends 'videos/header.html' %}
+
+{% block content %}
+
+<div class="container my-5">
+  <div class="text-center p-4">
+    <h1 class="display-3 text-secondary">Welcome to our Video Production Company</h1>
+  </div>
+  <div class="text-center p-4">
+    <h3>We produce professional videos for a variety of industries.  Browse our videos by category below.</h3>
+  </div>
+</div>
 
 {% for c in categories %}
-<p>{{ c.name }}</p>
-<p>{{ c.homepage_text|linebreaks }}</p>
-<img style="width:300px;" src="{{ c.homepage_image.url }}">
 
-<h2>Projects</h2>
-{% for p in c.get_projects_homepage %}
-<p>{{ p.name }}</p>
-<a href="{% url 'videos:project_detail' p.id %}"><img src="{{ p.project_image.url }}"></a>
+<!-- Category Information -->
+<div class="container-fluid px-0">
+  <img class="img-fluid" src="{{ c.homepage_image.url }}">
+</div>
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="text-center">{{ c.name }}</h1>
+      <h3 class="py-4">{{ c.homepage_text|linebreaks }}</h3>
+    </div>
+  </div>
+</div>
+
+<!-- Project Listing for the category -->
+<div class="container my-5">
+  <div class="row">
+    {% for p in c.get_projects_homepage %}
+      <div class="col-sm-6">
+        <a href="{% url 'videos:project_detail' p.id %}"><img class="img-fluid" src="{{ p.project_image.url }}"></a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
 {% endfor %}
-{% endfor %}
+
+<!-- Testimonials -->
+<div class="container my-5">
+  <div class="row">
+    <h2>Testimonials</h2>
+  </div> 
+</div>
+
+<div class="container my-5">
+  <div class="row">
+    {% for t in testimonials %}
+    <div class="col-sm-6 border border-light p-4">
+	  <p>{{ t.client_name }}</p>
+	  <p>{{ t.comment }}</p>
+    </div>
+	{% endfor %}
+  </div> 
+</div>
+
+{% endblock %}
