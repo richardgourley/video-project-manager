@@ -9,7 +9,7 @@ class Category(models.Model):
     homepage_image = models.FileField(blank=False, upload_to="files")
     homepage_text = models.TextField(max_length=1000)
     category_page_text = models.TextField(max_length=1000)
-    slug = models.SlugField(default="fishing", null=False, blank=False, help_text="This is how this category page appears in the browser. No spaces, please use an underscore (_) between words.")
+    slug = models.SlugField(blank=False, help_text="This is how this category page appears in the browser. No spaces, please use an underscore (_) between words.")
 
     def get_projects_homepage(self):
         return self.project_set.filter(placement='h')
