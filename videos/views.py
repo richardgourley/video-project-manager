@@ -4,9 +4,8 @@ from django.views import generic
 
 # Create your views here.
 def index(request):
-    categories = Category.objects.all()
     testimonials = Testimonial.objects.all()[:5]
-    return render(request, 'videos/index.html', {'categories':categories, 'testimonials':testimonials})
+    return render(request, 'videos/index.html', {'testimonials':testimonials})
 
 class CategoryPage(generic.DetailView):
     model = Category
@@ -22,13 +21,7 @@ class ProjectDetail(generic.DetailView):
 	def get_queryset(self):
 		return Project.objects.all()
 
-class Navbar(generic.ListView):
-    model = Category
-    template_name = 'videos/navbar.html'
-    context_object_name = 'categories'
 
-    def get_queryset(self):
-        return Category.objects.all()
         
         
 
