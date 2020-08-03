@@ -33,4 +33,47 @@ def create_testimonial(client_name, comment, category):
         category = category
     )
 
+'''
+VIEW TESTS
+'''
+
+class IndexTests(TestCase):
+    def setup(self):
+        self.client = Client
+
+    def test_index_returns_200(self):
+        response = self.client.get(reverse('videos:index'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_categories_appear_in_navmenu(self):
+        category1 = create_category("wedding", "image1.jpg", "home text", "category text", "wedding")
+        project1 = create_project("Wedding1", "image2.jpg", 69789, 1, category1, "c")
+        response = self.client.get(reverse('videos:index'))
+        self.assertIn("<a class=\"dropdown-item\" href=\"/wedding\">wedding</a>", str(response.content))
+
+class CategoryPageTests(TestCase):
+    def setup(self):
+        self.client = Client
+
+    def test_category_page_returns_200(self):
+        category1 = create_category("wedding", "image1.jpg", "home text", "category text", "wedding")
+        project1 = create_project("Wedding1", "image2.jpg", 69789, 1, category1, "c")
+        response = self.client.get(reverse('videos:category_page', args=(category1.slug,)))
+        self.assertEqual(response.status_code, 200)
+
+    def test_categories_appear_in_navmenu(self):
+        category1 = create_category("wedding", "image1.jpg", "home text", "category text", "wedding")
+        project1 = create_project("Wedding1", "image2.jpg", 69789, 1, category1, "c")
+        response = self.client.get(reverse('videos:category_page', args=(category1.slug,)))
+        self.assertIn("<a class=\"dropdown-item\" href=\"/wedding\">wedding</a>", str(response.content))
+
+    def test_projects_appear_lowest_order_first(self):
+        category1 = create_category("wedding", "image1.jpg", "home text", "category text", "wedding")
+        project1 = create_project("Wedding1", "image2.jpg", 69789, 2, category1, "c")
+        project2 = create_project("Wedding2", "image3.jpg", 78958, 1, category1, "c")
+        response = self.client.get(reverse('videos:category_page', args=(category1.slug,)))
+        projects = response.context['category'].get_projects_category_page()
+        # We expect project2 to appear first in 'category.get_projects_category_page'
+        self.assertEqual('Wedding2', projects[0].name)
+
 
