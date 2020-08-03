@@ -17,7 +17,6 @@ class Category(models.Model):
     def get_projects_category_page(self):
         return self.project_set.filter(placement='c')
 
-
     def __str__(self):
         return self.name
 
