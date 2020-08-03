@@ -16,12 +16,13 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <!-- Embed video code goes here -->
-      <!-- {{ project.video_code }}-->
-      <iframe src=""></iframe>
+      <div class="video-iframe-container">
+        <iframe src="https://www.youtube.com/embed/{{ project.video_code }}?rel=0;" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
     </div>
   </div>
 </div>
+
 
 {% endblock %}
 
