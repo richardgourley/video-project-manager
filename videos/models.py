@@ -12,10 +12,10 @@ class Category(models.Model):
     slug = models.SlugField(blank=False, help_text="This is how this category page appears in the browser. No spaces, please use an underscore (_) between words.")
 
     def get_projects_homepage(self):
-        return self.project_set.filter(placement='h')
+        return self.project_set.filter(placement='h').order_by('order')
 
     def get_projects_category_page(self):
-        return self.project_set.filter(placement='c')
+        return self.project_set.filter(placement='c').order_by('order')
 
     def __str__(self):
         return self.name
@@ -26,7 +26,7 @@ class Project(models.Model):
         verbose_name_plural = 'projects'
     name = models.CharField(max_length=120)
     project_image = models.FileField(blank=False, upload_to="files")
-    video_code = models.CharField('YOUTUBE VIDEO CODE: DONT enter the full url, eg. If the URL is https://www.youtube.com/watch?v=h5EtMD1mDiw - Enter h5EtMD1mDiw', max_length=25, null=False)
+    video_code = models.CharField('VIDEO CODE: Only enter the video code eg.dMdFN6NoNnQ', help_text="CAREFUL! Click 'share' then 'embed' but just enter the CODE after /embed eg. dMdFN6NoNnQ", max_length=15, blank=False, null=False)
     order = models.IntegerField('ORDER: (Optional): Videos appear in order on pages, lowest number first. Leave default if order is not important.', default=100, null=False)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=False)
 
