@@ -21,17 +21,17 @@
 <div class="container my-5">
   <div class="row">
     <div class="col-12">
-      <h1 class="text-center">{{ c.name }}</h1>
-      <h3 class="py-4">{{ c.homepage_text|linebreaks }}</h3>
+      <h2 class="text-center">{{ c.name }}</h2>
+      <p class="py-4">{{ c.homepage_text|linebreaks }}</p>
     </div>
   </div>
 </div>
 
 <!-- Project Listing for the category -->
 <div class="container my-5">
-  <div class="row">
+  <div class="row m-0 p-0">
     {% for p in c.get_projects_homepage %}
-      <div class="col-sm-6">
+      <div class="col-sm-6 m-0 p-0">
         <a href="{% url 'videos:project_detail' p.id %}"><img class="img-fluid" src="{{ p.project_image.url }}"></a>
       </div>
     {% endfor %}
