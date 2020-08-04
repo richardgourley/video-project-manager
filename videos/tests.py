@@ -76,4 +76,18 @@ class CategoryPageTests(TestCase):
         # We expect project2 to appear first in 'category.get_projects_category_page'
         self.assertEqual('Wedding2', projects[0].name)
 
+class ProjectDetailTests(TestCase):
+    def setup(self):
+        self.client = Client
+
+    def test_property_detail_returns_200(self):
+        category1 = create_category("wedding", "image1.jpg", "home text", "category text", "wedding")
+        project1 = create_project("Wedding1", "image2.jpg", 69789, 2, category1, "c")
+        response = self.client.get(reverse("videos:project_detail", args=(project1.id,)))
+        self.assertEqual(response.status_code, 200)
+
+    def test_property_detail_returns_404_with_incorrect_id(self):
+        response = self.client.get(reverse("videos:project_detail", args=("18",)))
+        self.assertEqual(response.status_code, 404)
+
 
