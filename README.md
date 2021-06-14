@@ -15,7 +15,7 @@ The site admin can create categories, video projects and testimonials and has fu
 - For the home page, the admin can create an intro text and add an image for each category which is displayed on the home page with a view more link to explore more videos in each category.
 - Testimonials - the site admin can create testimonials from customers and assign the testimonial to a project and category.
 
-## TOOLS/ SKILLS REFERENCE
+## Tools/ Skills Reference
 Written in pure Django.  For students of Django here are some of the tools/ skills covered in the project.
 
 VIEWS
